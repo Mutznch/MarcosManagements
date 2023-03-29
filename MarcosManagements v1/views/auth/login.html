@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}<title>Login</title>{% endblock %}
+{% block content %}
+
+<div cadastrar>
+    <h2>Login</h2>
+    
+    <form action="/auth/login" method="POST">
+        <input type="email" name="email" id="email" placeholder="Email">
+        <input type="password" name="password" id="password" placeholder="Senha">
+        <button type="submit" name="submit" id="submit">Confirmar</button>
+    </form>
+    </div>
+    
+    
+{% endblock %}

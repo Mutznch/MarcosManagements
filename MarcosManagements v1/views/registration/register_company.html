@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}<title>Registrar Empresa</title>{% endblock %}
+{% block content %}
+
+<div cadastrar>
+    <h2>Cadastrar Empresa</h2>
+    
+    <form action="/registration/add_company" method="POST">
+        <input type="text" name="name" id="name" placeholder="Nome">
+        <button type="submit" name="submit" id="submit">Confirmar</button>
+    </form>
+    </div>
+    
+    
+{% endblock %}

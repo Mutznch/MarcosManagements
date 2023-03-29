@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}<title>Dispositivos</title>{% endblock %}
+{% block content %}
+    <h2>Listagem de Sensores</h2>
+    <ul>
+        {% for device in devices %}
+            <li>{{ device }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script ></script>
+    {% block title %}<title>Marcos Managements</title>{% endblock %}
+</head>
+<body>
+    <h1>Marcos Managements</h1>
+    <h2>Acesse o menu:</h2>
+    <Ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/admin">Admin</a></li>
+        <li><a href="/auth">Login</a></li>
+        <li><a href="/company">Empresa</a></li>
+        <li><a href="/registration/company">Registrar Empresa</a></li>
+        <li><a href="/registration">Registrar Usuário</a></li>
+    </Ul>
+    {% block content %}{% endblock %}
+</body>
+</html>
