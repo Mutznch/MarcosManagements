@@ -5,6 +5,8 @@ class Actuator(db.Model):
     id = db.Column('id', db.Integer, db.ForeignKey(Device.id), primary_key=True)
     actuator_type = db.Column(db.String(50))
 
+    activations = db.relationship("Activation", backref="actuators", lazy=True)
+
 
     def save_actuator(name, brand, model, voltage, description, is_active, actuator_type):
         device = Device(name=name, brand=brand, model = model,

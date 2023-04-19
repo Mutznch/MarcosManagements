@@ -4,6 +4,9 @@ class Sensor(db.Model):
     __tablename__ = 'sensors'
     id = db.Column('id', db.Integer, db.ForeignKey(Device.id), primary_key=True)
     mesure = db.Column(db.String(20))
+
+    reads = db.relationship("Read", backref="sensors", lazy=True)
+
     
 
     def save_sensor(name, brand, model, voltage, description, is_active, measure):
