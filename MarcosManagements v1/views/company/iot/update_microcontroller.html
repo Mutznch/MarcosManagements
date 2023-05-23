@@ -1,0 +1,47 @@
+<!-- home.html -->
+{% extends "iot/iot_index.html" %}
+{% import 'utils/forms.html' as forms %}
+{% block main %}
+<main>
+    <div class="vertical-center">
+        <div class="container view">
+            <div class="justify-content-center">
+                <div class="container-fluid px-4">
+                    <h3 class="mt-4">Cadastro de Sensor</h3>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="/company/">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/company/iot/">Iot</a></li>
+                        <li class="breadcrumb-item active">Atualização de Sensor</li>
+                    </ol>
+                    <div class="container-fluid px-4">
+                        <div class="row">
+                            <div class="vertical-center">
+                                <div class="container">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Atualizar Sensor
+                                        </div>
+                                        <div class="card-body">
+                                            <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="/company/iot/save_microcontroller_changes" method="POST">
+                                                <input type="hidden"  id="id" name = "id" value="{{ microcontroller[0].id }}">
+                                                {{ forms.input(label = 'Nome', name = 'name', id = 'name', type='text', box_size = 6) }}
+                                                {{ forms.input(label = 'Modelo', name = 'model', id = 'model', type='text', box_size = 3) }}
+                                                {{ forms.input(label = 'Marca', name = 'brand', id = 'brand', type='text', box_size = 3) }}
+                                                {{ forms.input(label = 'Tensão', name = 'voltage', id = 'voltage', type='text', box_size = 2) }}
+                                                {{ forms.input(label = 'Ports', name = 'ports', id = 'ports', type='text', box_size = 2) }}
+                                                {{ forms.textarea(label = 'Informações Adicionais', name = 'description', rows = 1, id = 'description', box_size = 8) }}
+                                                {{ forms.checkbox(label = 'Microcontrolador ativo', name = "is_active", id = "is_active", checked='', box_size = 12) }}
+                                                {{ forms.button(label = 'Atualizar Microcontrolador', box_size = 12) }}
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

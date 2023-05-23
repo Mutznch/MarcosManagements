@@ -7,7 +7,7 @@ dispositivos = []
 
 @company.route("/")
 def company_index():
-    return render_template("company/company.html")
+    return render_template("company/company_index.html")
 
 @company.route("/register_worker")
 def company_register_worker():

@@ -1,0 +1,39 @@
+{% extends "company/company_base.html" %}
+{% block main %}
+<main class="main">
+    
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Company Workers</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active"><a href="/company/">Dashboard</a></li>
+            <li class="breadcrumb-item active">Workers Dashboad</li>
+        </ol>
+        <div class="vertical-center">
+            <div class="container view">
+                <div class="justify-content-center">
+                <div class="row">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card register text-white mb-4" >
+                            <div class="card-body">Cadastrar Novo Funcionario</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <a class="small text-white stretched-link" href="/company/workers/register_worker">Acessar página de Cadastro</a>
+                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card views text-white mb-4">
+                            <div class="card-body">Listar Funcionarios</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <a class="small text-white stretched-link" href="/company/workers/manage_workers">Gerenciar</a>
+                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block content %} {% endblock content%}
+</main>
+{% endblock main%}

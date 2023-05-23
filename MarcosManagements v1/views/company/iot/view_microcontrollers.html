@@ -1,0 +1,79 @@
+{% extends "iot/iot_index.html" %}
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h2 class="mt-4">Listagem de Microcontroladores</h2>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active"><a href="/company/">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="/company/iot/">Iot</a></li>
+            <li class="breadcrumb-item active">Lista de Microcontroladores</li>
+        </ol>
+        <div class="vertical-center">
+            <div class="container view">
+                <div class="justify-content-center">
+                    <div class="card">
+                        <div class="card-body">
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+                                    {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} alert-dismissible">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        {{ message }}
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                            <table id="view_microcontrollers" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Modelo</th>
+                                        <th>Marca</th>
+                                        <th>Tensão de Trabalho</th>
+                                        <th>Ports</th>
+                                        <th>Descrição</th>
+                                        <th>Status</th>
+                                        <th>Atualizar</th>
+                                        <th>Excluir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for microcontroller in microcontrollers %}
+                                    <tr>
+                                        <td>{{ microcontroller.name }}</td>
+                                        <td>{{ microcontroller.brand }}</td>
+                                        <td>{{ microcontroller.model }}</td>
+                                        <td>{{ microcontroller.voltage }}</td>
+                                        <td>{{ microcontroller.ports }}</td>
+                                        <td>{{ microcontroller.description }}</td>
+                                        {% if microcontroller.is_active == true %}
+                                        <td>Ativo</td>
+                                        {% else %}
+                                        <td>Desativado</td>
+                                        {% endif %}
+                                        <td><i class="fa fa-refresh"></i><a href="/company/iot/update_microcontroller/{{ microcontroller.id }}"> Editar</a></td>
+                                        <td><i class="fa fa-trash"></i><a href="/company/iot/delete_microcontroller/{{ microcontroller.id }}" onclick="return confirm('Tem certeza que deseja excluir esse microcontrolador?');"> Excluir</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Modelo</th>
+                                        <th>Marca</th>
+                                        <th>Tensão de Trabalho</th>
+                                        <th>Ports</th>
+                                        <th>Descrição</th>
+                                        <th>Status</th>
+                                        <th>Atualizar</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
