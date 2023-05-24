@@ -7,8 +7,8 @@
     <div class="container-fluid px-4">
     <h3 class="mt-4">Cadastro de Microcontroladores</h3>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="/company/">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="/company/iot/">Iot</a></li>
+        <li class="breadcrumb-item"><a href="../../">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="../">Iot</a></li>
         <li class="breadcrumb-item active">Cadastro de Microcontroladores</li>
     </ol>
     <div class="vertical-center">
@@ -23,7 +23,7 @@
                                     Cadastrar Novo Microcontrolador
                                     </div>
                                     <div class="card-body">
-                                        <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="/company/iot/save_microcontroller" method="POST">
+                                        <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="../save_microcontroller" method="POST">
                                             {{ forms.input(label = 'Nome', name = 'name', id = 'name', type='text', box_size = 6) }}
                                             {{ forms.input(label = 'Modelo', name = 'model', id = 'model', type='text', box_size = 3) }}
                                             {{ forms.input(label = 'Marca', name = 'brand', id = 'brand', type='text', box_size = 3) }}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}<title>Companies</title>{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+    <div class="col-lg-12">
+    <h1 class="page-header">My Companies</h1>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 portfolio-item">
+        <h3>
+        Owned
+        </h3>
+        <ul>
+            {% for company in owned_companies %}
+                <li><a href="{{ company.id }}">{{ company.name }}</a></li>
+            {% endfor %}
+        </ul>
+        </div>
+        <div class="col-md-6 portfolio-item">
+        <h3>
+        Employed
+        </h3>
+            {% for company in owned_companies %}
+                <li><a href="{{ company.id }}">{{ company.name }}</a></li>
+            {% endfor %}
+        </div>
+    </div>    
+</div>
+    
+
+{% endblock %}

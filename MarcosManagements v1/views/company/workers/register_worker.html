@@ -7,8 +7,8 @@
     <div class="container-fluid px-4">
     <h3 class="mt-4">Cadastro de Atuadores</h3>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="/company/">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="/company/workers/">Workers</a></li>
+        <li class="breadcrumb-item"><a href="../../">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="../">Workers</a></li>
         <li class="breadcrumb-item active">Cadastro de Funcionario</li>
     </ol>
     <div class="vertical-center">
@@ -23,7 +23,7 @@
                                     Cadastrar Novo Funcionario
                                     </div>
                                     <div class="card-body">
-                                        <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="/company/workers/save_worker" method="POST">
+                                        <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="../save_worker" method="POST">
                                             {{ forms.input(label = 'Nome de Usuário', name = 'username', id = 'username', type='text', box_size = 6) }}
                                             {{ forms.input(label = 'Função', name = 'function', id = 'function', type='text', box_size = 3) }}
                                             {{ forms.input(label = 'Setor', name = 'sector', id = 'sector', type='text', box_size = 3) }}

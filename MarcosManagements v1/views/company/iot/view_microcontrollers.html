@@ -4,8 +4,8 @@
     <div class="container-fluid px-4">
         <h2 class="mt-4">Listagem de Microcontroladores</h2>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active"><a href="/company/">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a href="/company/iot/">Iot</a></li>
+            <li class="breadcrumb-item"><a href="../../">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="../">Iot</a></li>
             <li class="breadcrumb-item active">Lista de Microcontroladores</li>
         </ol>
         <div class="vertical-center">
@@ -51,8 +51,8 @@
                                         {% else %}
                                         <td>Desativado</td>
                                         {% endif %}
-                                        <td><i class="fa fa-refresh"></i><a href="/company/iot/update_microcontroller/{{ microcontroller.id }}"> Editar</a></td>
-                                        <td><i class="fa fa-trash"></i><a href="/company/iot/delete_microcontroller/{{ microcontroller.id }}" onclick="return confirm('Tem certeza que deseja excluir esse microcontrolador?');"> Excluir</a></td>
+                                        <td><i class="fa fa-refresh"></i><a href="../update_microcontroller/{{ microcontroller.id }}"> Editar</a></td>
+                                        <td><i class="fa fa-trash"></i><a href="../delete_microcontroller/{{ microcontroller.id }}" onclick="return confirm('Tem certeza que deseja excluir esse microcontrolador?');"> Excluir</a></td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

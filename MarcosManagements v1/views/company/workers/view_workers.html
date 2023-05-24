@@ -4,8 +4,8 @@
     <div class="container-fluid px-4">
         <h2 class="mt-4">Listagem de Atuadores</h2>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active"><a href="/company/">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a href="/company/workers/">Workers</a></li>
+            <li class="breadcrumb-item"><a href="../../">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="../">Workers</a></li>
             <li class="breadcrumb-item active">Lista de Funcionarios</li>
         </ol>
         <div class="vertical-center">
@@ -43,8 +43,8 @@
                                         <td>{{ worker.function }}</td>
                                         <td>{{ worker.working_hours }}</td>
                                         <td>{{ worker.salary }}</td>
-                                        <td><i class="fa fa-refresh"></i><a href="/company/workers/update_worker/{{ worker.id }}"> Editar</a></td>
-                                        <td><i class="fa fa-trash"></i><a href="/company/workers/delete_worker/{{ worker.id }}" onclick="return confirm('Tem certeza que deseja excluir esse funcionario?');"> Excluir</a></td>
+                                        <td><i class="fa fa-refresh"></i><a href="../update_worker/{{ worker.id }}"> Editar</a></td>
+                                        <td><i class="fa fa-trash"></i><a href="../delete_worker/{{ worker.id }}" onclick="return confirm('Tem certeza que deseja excluir esse funcionario?');"> Excluir</a></td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

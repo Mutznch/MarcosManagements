@@ -25,3 +25,8 @@ class Company(db.Model):
         ).all()
         
         return companies
+    
+    def get_workers(id):
+        company = Company.query.filter_by(id=id).first()
+
+        return company.workers

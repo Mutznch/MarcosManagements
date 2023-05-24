@@ -48,3 +48,6 @@ def auth_signup_post():
         password=generate_password_hash(password, method='sha256'))
 
     return redirect(url_for("auth.auth_login"))
+
+# FAZER LOGOUT
+# COLOCAR TODAS AS ROTAS LOGIN REQUIRED

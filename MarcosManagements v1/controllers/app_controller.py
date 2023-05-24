@@ -5,7 +5,8 @@ from models.db import db, instance
 from controllers.admin_controller import admin
 from controllers.auth_controller import auth
 from controllers.company_controller import company
-from controllers.registration_controller import registration
+from controllers.workers_controller import workers
+from controllers.iot_controller import iot
 
 def create_app() -> Flask:
     app = Flask(__name__, 
@@ -20,8 +21,9 @@ def create_app() -> Flask:
 
     app.register_blueprint(admin, url_prefix= "/admin")
     app.register_blueprint(auth, url_prefix= "/auth")
-    app.register_blueprint(company, url_prefix= "/company")
-    app.register_blueprint(registration, url_prefix= "/registration")
+    app.register_blueprint(company, url_prefix= "/")
+    app.register_blueprint(workers, url_prefix= "/company/<company_id>/workers")
+    app.register_blueprint(iot, url_prefix= "/company/<company_id>/iot")
 
     @app.route('/')
     def index():
