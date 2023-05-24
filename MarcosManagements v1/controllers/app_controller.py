@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request
 from models.db import db, instance
 
+
 from controllers.admin_controller import admin
 from controllers.auth_controller import auth
 from controllers.company_controller import company

@@ -8,7 +8,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(30), nullable=False, unique=True)
     name = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(30), nullable=False, unique=True)
-    cpf = db.Column(db.String(11), min=11, max=11, nullable=False, unique=True)
+    cpf = db.Column(db.String(11), nullable=False, unique=True)
     password = db.Column(db.String(1024), nullable=False) 
 
     roles = db.relationship("Role", back_populates="users", secondary="user_roles")
