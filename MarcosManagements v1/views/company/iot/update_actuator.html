@@ -1,6 +1,5 @@
-<!-- home.html -->
-{% extends "iot/iot_index.html" %}
-{% import 'utils/forms.html' as forms %}
+{% extends "company/iot/iot_index.html" %}
+{% import 'company/utils/forms.html' as forms %}
 {% block main %}
 <main>
     <div class="vertical-center">
@@ -9,8 +8,8 @@
                 <div class="container-fluid px-4">
                     <h3 class="mt-4">Cadastro de Sensor</h3>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="../../">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="../">Iot</a></li>
+                        <li class="breadcrumb-item"><a href="/company/{{ company_id }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/company/{{ company_id }}/iot">Iot</a></li>
                         <li class="breadcrumb-item active">Atualização de Sensor</li>
                     </ol>
                     <div class="container-fluid px-4">
@@ -22,7 +21,7 @@
                                             Atualizar Sensor
                                         </div>
                                         <div class="card-body">
-                                            <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="../save_actuator_changes" method="POST">
+                                            <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="save_actuator_changes" method="POST">
                                                 <input type="hidden"  id="id" name = "id" value="{{ sensor[0].id }}">
                                                 {{ forms.input(label = 'Nome', name = 'name', id = 'name', type='text', box_size = 6) }}
                                                 {{ forms.input(label = 'Modelo', name = 'model', id = 'model', type='text', box_size = 3) }}

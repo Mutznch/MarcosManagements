@@ -30,9 +30,6 @@ def create_app() -> Flask:
         # since the user_id is just the primary key of our user table, use it in the query for the user
         return User.query.get(int(user_id))
 
-    app.register_blueprint(auth, url_prefix='/auth')
-    app.register_blueprint(admin, url_prefix='/admin')
-
     app.register_blueprint(admin, url_prefix= "/admin")
     app.register_blueprint(auth, url_prefix= "/auth")
     app.register_blueprint(company, url_prefix= "/")

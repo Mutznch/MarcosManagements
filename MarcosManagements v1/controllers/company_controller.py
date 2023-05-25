@@ -16,10 +16,10 @@ def company_index():
     
     return render_template("company/companies.html", owned_companies=my_companies, user_id = current_user.id)
 
-@company.route("/company/<id>",)
+@company.route("/company/<id>")
 @login_required
 def company_overview(id):
-    return render_template("company/company_index.html")
+    return render_template("company/company_index.html", company_id=id)
 
 @company.route("/register")
 @login_required

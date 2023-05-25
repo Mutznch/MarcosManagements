@@ -1,11 +1,11 @@
 {% extends "company/company_base.html" %}
 {% block main %}
-<main class="main">
-    
+<main>
+    <!--
     <div class="container-fluid px-4">
         <h1 class="mt-4">Company IOT</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active"><a href="../">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="/company/{{ company_id }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Iot Dashboad</li>
         </ol>
         <div class="vertical-center">
@@ -70,7 +70,7 @@
                         <div class="card operations text-white mb-4">
                             <div class="card-body">Visualizar Alertas do Microcontrolador</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="">Acessar página de Alertas</a>
+                                <a class="small text-white stretched-link" href="/company/{{ company_id }}/iot">Acessar página de Alertas</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                         <div class="card operations text-white mb-4">
                             <div class="card-body">Solicitar Leitura de um Sensor</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="">Acessar página de Leitura</a>
+                                <a class="small text-white stretched-link" href="/company/{{ company_id }}/iot">Acessar página de Leitura</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="card operations text-white mb-4">
                             <div class="card-body">Acionar uma atuador</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="">Acessar página de Ativação</a>
+                                <a class="small text-white stretched-link" href="/company/{{ company_id }}/iot">Acessar página de Ativação</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
@@ -98,5 +98,100 @@
         </div>
     </div>
     {% block content %} {% endblock content%}
-</main>
+</main>-->
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Página Inicial</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"><a href="/company/{{ company_id }}">Dashboard</a></li>
+            <li class="breadcrumb-item active">Iot Dashboad</li>
+    </ol>
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">Cadastrar Novo Microcontrolador</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="register_microcontroller">Registrar</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">Cadastrar Novo Sensor</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="register_sensor">Registrar</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body">Cadastrar Novo Atuador</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="register_actuator">Gerenciar</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">Listar Microcontroladores</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="view_microcontrollers">Gerenciar</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">Listar Sensores</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="view_sensors">Registrar</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">Listar Atuadores</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="view_actuators">Registrar</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body">Visualizar Alertas do Microcontrolador</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">Gerenciar</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">Solicitar Leitura de um Sensor</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">Gerenciar</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">Acionar uma atuador</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">Registrar</a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock main%}

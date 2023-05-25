@@ -33,3 +33,9 @@ class Worker(db.Model):
             return True
         except:
             return False
+        
+    def get_worker_by_company_id(company_id):
+        return Worker.query.filter_by(company_id=company_id).join(User, User.id == Worker.user_id)\
+            .add_columns(User.username, User.name, Worker.function, Worker.sector, Worker.working_hours, Worker.salary)\
+            .all()
+        
