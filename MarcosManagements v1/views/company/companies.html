@@ -9,13 +9,14 @@
     </div>
 
     <div class="row">
+        <input type="hidden"  id="id" name ="id" value="{{ user_id }}">
         <div class="col-md-6 portfolio-item">
         <h3>
         Owned
         </h3>
         <ul>
             {% for company in owned_companies %}
-                <li><a href="{{ company.id }}">{{ company.name }}</a></li>
+                <li><a href="company/{{ company.id }}">{{ company.name }}</a></li>
             {% endfor %}
         </ul>
         </div>
@@ -24,7 +25,7 @@
         Employed
         </h3>
             {% for company in owned_companies %}
-                <li><a href="{{ company.id }}">{{ company.name }}</a></li>
+                <li><a href="company/{{ company.id }}">{{ company.name }}</a></li>
             {% endfor %}
         </div>
     </div>    

@@ -1,18 +1,22 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask_login import login_required
+
 from models import Worker, Company, db
 
 workers = Blueprint("workers", __name__, template_folder="./views/", static_folder='./static/', root_path="./")
 
 @workers.route("/register_worker")
+@login_required
 def register_workers():
     return render_template("company/workers/register_worker.html")
 
 @workers.route("/view_workers")
-def register_workers(company_id):
+@login_required
+def view_workers(company_id):
     company = Company.get_workers(company_id)
     return render_template("company/workers/view_workers.html", workers = company.workers)
 
-@workers.route("/save_worker", method=["POST"])
+@workers.route("/save_worker", methods=["POST"])
 def save_worker(company_id):
     username = request.form.get("username")
     function = request.form.get("function")
@@ -26,6 +30,7 @@ def save_worker(company_id):
 
 
 @workers.route("/update_worker/<worker_id>")
+@login_required
 def update_worker(worker_id):
     worker = db.session.query.filter_by(id=worker_id).first()
     

@@ -13,6 +13,12 @@ def auth_index():
 def auth_login():
     return render_template("auth/login.html")
 
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('auth.auth_login'))
+
 @auth.route("/login_post", methods=["POST"])
 def auth_login_post():
     login_info = request.form.get('login')
@@ -23,7 +29,7 @@ def auth_login_post():
 
     if not user:
         flash('Please check your login details and try again.')
-        return redirect(url_for('auth.login'))
+        return redirect(url_for('auth.auth_login'))
 
     login_user(user, remember=remember)
     
@@ -37,17 +43,15 @@ def auth_signup():
 def auth_signup_post():
     name = request.form.get("name", None)
     username = request.form.get("username", None)
-    password = request.form.get("password", None)
     email = request.form.get("email", None)
+    cpf = request.form.get("cpf", None)
+    password = request.form.get("password", None)
 
     if User.credentials_exists(username=username, email=email):
         flash('Email address or username already exists')
         return redirect(url_for('auth.signup'))
 
-    User.save_user(name, username=username, email=email, 
+    User.save_user(name=name, username=username, email=email, cpf=cpf, 
         password=generate_password_hash(password, method='sha256'))
 
     return redirect(url_for("auth.auth_login"))
-
-# FAZER LOGOUT
-# COLOCAR TODAS AS ROTAS LOGIN REQUIRED

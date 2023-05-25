@@ -3,8 +3,8 @@ from models import db, User, Company
 class Worker(db.Model):
     __tablename__ = "workers"
     id = db.Column("id",  db.Integer(), primary_key = True)
-    user_id = db.Column(db.Integer(), db.ForeignKey(User.id), primary_key = True)
-    company_id = db.Column(db.Integer(), db.ForeignKey(Company.id), primary_key = True)
+    user_id = db.Column(db.Integer(), db.ForeignKey(User.id))
+    company_id = db.Column(db.Integer(), db.ForeignKey(Company.id))
     function = db.Column(db.String(30))
     sector = db.Column(db.String(30))
     working_hours = db.Column(db.Float())

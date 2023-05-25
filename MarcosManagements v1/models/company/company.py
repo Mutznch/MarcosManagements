@@ -3,7 +3,7 @@ from models import db, User
 class Company(db.Model):
     __tablename__ = "companies"
     id = db.Column("id",  db.Integer(), primary_key = True)
-    owner_id = db.Column(db.Integer(), db.ForeignKey(User.id), primary_key = True)
+    owner_id = db.Column(db.Integer(), db.ForeignKey(User.id))
     name = db.Column(db.String(30))
 
     workers = db.relationship("Worker", backref="companies", lazy=True)
@@ -30,3 +30,13 @@ class Company(db.Model):
         company = Company.query.filter_by(id=id).first()
 
         return company.workers
+    
+    def get_my_companies(user_id):
+
+        user = User.query.get(user_id)
+
+        my_companies = user.companies
+
+        #owned_companies = 
+
+        return my_companies 

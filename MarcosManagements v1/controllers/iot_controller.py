@@ -1,16 +1,20 @@
 from flask import Blueprint, render_template,redirect,url_for, request, flash
+from flask_login import login_required
 from models import Sensor, Device, Actuator, Microcontroller, db
 iot = Blueprint("iot", __name__, template_folder = './views/admin/', static_folder='./static/', root_path="./")
 
 @iot.route("/")
+@login_required
 def iot_index():
     return render_template("/iot/iot_index.html")
 
 @iot.route("/register_sensor")
+@login_required
 def register_sensor():
     return render_template("/iot/register_sensor.html")
 
 @iot.route("/view_sensors")
+@login_required
 def view_sensors(company_id):
     sensors = Sensor.get_company_sensors(company_id)
     return render_template("/iot/view_sensors.html", sensors = sensors)
@@ -30,6 +34,7 @@ def save_sensors(company_id):
     return redirect(url_for('admin.iot.view_sensors'))
 
 @iot.route("/update_sensor/<id>")
+@login_required
 def update_sensor(id):
     sensor = db.session.query(Device, Sensor)\
                         .join(Sensor, Sensor.id == Device.id)\
@@ -69,6 +74,7 @@ def save_actuator(company_id):
     return redirect(url_for('admin.iot.view_actuators'))
 
 @iot.route("/view_actuators")
+@login_required
 def view_actuators(company_id):
     actuators = Actuator.get_company_actuators(company_id)
     return render_template("/iot/view_actuators.html", actuators = actuators)
@@ -88,14 +94,17 @@ def save_microcontroller(company_id):
     return redirect(url_for('admin.iot.view_microcontrollers'))
 
 @iot.route("/view_microcontrollers")
+@login_required
 def view_microcontrollers(company_id):
     microcontrollers = Microcontroller.get_company_microcontrollers(company_id)
     return render_template("/iot/view_microcontrollers.html", microcontrollers = microcontrollers)
 
 @iot.route("/register_actuator")
+@login_required
 def register_actuator():
     return render_template("/iot/register_actuator.html")
 
 @iot.route("/register_microcontroller")
+@login_required
 def register_microcontroller():
     return render_template("/iot/register_microcontroller.html")
