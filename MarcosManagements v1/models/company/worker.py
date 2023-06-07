@@ -10,6 +10,10 @@ class Worker(db.Model):
     working_hours = db.Column(db.Float())
     salary = db.Column(db.Float())
 
+    def get_worker(id):
+        return Worker.query.filter_by(id=id).join(User, User.id == Worker.user_id)\
+            .add_columns(Worker.id, User.username).first()
+
     def save_worker(username, company_id, function, sector, working_hours, salary):
         user = User.query.filter_by(username=username).first()
         worker = Worker(user_id=user.id, company_id=company_id, function=function, sector=sector, working_hours=working_hours, salary=salary)
@@ -27,7 +31,6 @@ class Worker(db.Model):
 
     def delete_worker(id):
         try:
-            Company.query.filter_by(id=id).delete()
             Worker.query.filter_by(id=id).delete()
             db.session.commit()
             return True
@@ -36,6 +39,10 @@ class Worker(db.Model):
         
     def get_worker_by_company_id(company_id):
         return Worker.query.filter_by(company_id=company_id).join(User, User.id == Worker.user_id)\
-            .add_columns(User.username, User.name, Worker.function, Worker.sector, Worker.working_hours, Worker.salary)\
+            .add_columns(Worker.id, User.username, User.name, Worker.function, Worker.sector, Worker.working_hours, Worker.salary)\
             .all()
-        
+
+    def get_working_companies(user_id):
+
+        return Worker.query.filter_by(user_id=user_id).join(Company, Company.id == Worker.company_id)\
+            .add_columns(Company.id, Company.name).all()

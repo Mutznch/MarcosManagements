@@ -13,3 +13,4 @@ from models.iot.read import Read
 from models.iot.activation import Activation
 from models.iot.microcontroller import Microcontroller
 from models.iot.alert import Alert
+

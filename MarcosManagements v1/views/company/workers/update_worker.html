@@ -18,16 +18,16 @@
                                 <div class="container">
                                     <div class="card">
                                         <div class="card-header">
-                                            Atualizar Funcionario {{ worker[0].name }}
+                                            Atualizar Funcionario {{ worker.username }}
                                         </div>
                                         <div class="card-body">
-                                            <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="save_worker_changes" method="POST">
-                                                <input type="hidden"  id="id" name = "id" value="{{ worker[0].id }}">
+                                            <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="/company/{{ company_id }}/workers/save_worker_changes" method="POST">
+                                                <input type="hidden"  id="id" name = "id" value="{{ worker.id }}">
                                                     {{ forms.input(label = 'Função', name = 'function', id = 'function', type='text', box_size = 3) }}
                                                     {{ forms.input(label = 'Setor', name = 'sector', id = 'sector', type='text', box_size = 3) }}
                                                     {{ forms.input(label = 'Horas de Trabalho', name = 'working_hours', id = 'working_hours', type='text', box_size = 2) }}
                                                     {{ forms.input(label = 'Salario', name = 'salary', id = 'salary', type='text', box_size = 2) }}
-                                                    {{ forms.button(label = 'Cadastrar Funcionario', box_size = 12) }}
+                                                    {{ forms.button(label = 'Atualizar Funcionario', box_size = 12) }}
                                             </form>
                                         </div>
                                     </div>
