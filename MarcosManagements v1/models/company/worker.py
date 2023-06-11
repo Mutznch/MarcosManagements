@@ -10,9 +10,14 @@ class Worker(db.Model):
     working_hours = db.Column(db.Float())
     salary = db.Column(db.Float())
 
+    payments = db.relationship("Payment", backref="workers", lazy=True)
+
     def get_worker(id):
         return Worker.query.filter_by(id=id).join(User, User.id == Worker.user_id)\
             .add_columns(Worker.id, User.username).first()
+    
+    def get_worker_by_user_id(user_id, company_id):
+        return Worker.query.filter_by(user_id=user_id, company_id=company_id).first()
 
     def save_worker(username, company_id, function, sector, working_hours, salary):
         user = User.query.filter_by(username=username).first()

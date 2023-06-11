@@ -24,11 +24,12 @@ class User(UserMixin, db.Model):
         db.session.add(user)
         db.session.commit()
 
-    def credentials_exists(username, email):
+    def credentials_exists(username=None, email=None, cpf=None):
         userEmail = User.query.filter_by(email=email).first()
         userUsername = User.query.filter_by(username=username).first()
+        userCPF = User.query.filter_by(cpf=cpf).first()
 
-        return True if (userEmail or userUsername) else False
+        return True if (userEmail or userUsername or userCPF) else False
 
     def validate_credentials(login, password):
 
@@ -43,11 +44,12 @@ class User(UserMixin, db.Model):
             else None
 
     def get_user_by_id(id):
-        user = User.query.filter_by(id=id).first()
+        return User.query.filter_by(id=id).first()
+    
+    def get_user_by_username(username):
+        return User.query.filter_by(username=username).first()
 
-        return user
-
-    def get_user_owned_companies(user_id):
+    def get_user_owned_companies(id):
         user = User.get_user_by_id(id)
         
         return user.companies

@@ -4,23 +4,25 @@
     <h1 class="mt-4">Página Inicial</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active"><a href="/company/{{ company_id }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Workers Dashboad</li>
+            <li class="breadcrumb-item active">Payment Dashboad</li>
     </ol>
     <div class="row">
+        {% if owner %}
         <div class="col-xl-3 col-md-6">
             <div class="card bg-success text-white mb-4">
-                <div class="card-body">Cadastrar Funcionario</div>
+                <div class="card-body">Realizar Pagamento</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="register_worker">Registrar</a>
+                    <a class="small text-white stretched-link" href="register_payment">Pagar</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>
+        {% endif %}
         <div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
-                <div class="card-body">Gerenciar Funcionarios</div>
+                <div class="card-body">Histórico de Pagamentos</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="view_workers">Gerenciar</a>
+                    <a class="small text-white stretched-link" href="view_payments">Vizualizar</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>

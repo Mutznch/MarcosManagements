@@ -37,6 +37,4 @@ class Company(db.Model):
 
         my_companies = user.companies
 
-        #owned_companies = 
-
         return my_companies 

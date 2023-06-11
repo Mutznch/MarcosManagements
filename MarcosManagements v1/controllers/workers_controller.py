@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from flask_login import login_required
+from flask_login import login_required, current_user
 from controllers import verifyCompany, verifyOwner
 
-from models import Worker, Company, db
+from models import Worker, User
 
 workers = Blueprint("workers", __name__, template_folder="./views/", static_folder='./static/', root_path="./")
 
@@ -34,8 +34,16 @@ def save_worker(company_id):
     working_hours = request.form.get("working_hours")
     salary = request.form.get("salary")
 
+    if not User.credentials_exists(username=username):
+        flash(f"Usuário {username} não encontrado")
+        return redirect(url_for("workers.register_workers", company_id=company_id))
+    
+    if (username in [worker.username for worker in Worker.get_worker_by_company_id(company_id)])\
+    or (company_id in [company.id for company in User.get_user_owned_companies(User.get_user_by_username(username).id)]):
+        flash(f"Usuário {username} já trabalha nesta empresa")
+        return redirect(url_for("workers.register_workers", company_id=company_id))
+    
     Worker.save_worker(username=username, company_id=company_id,function=function,sector=sector,working_hours=working_hours,salary=salary)
-
     return redirect(url_for("workers.view_workers", company_id=company_id))
 
 

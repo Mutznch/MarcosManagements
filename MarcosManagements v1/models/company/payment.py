@@ -1,39 +1,55 @@
-"""from models import db, Worker
+from models import db, Worker, User, Company
+from datetime import datetime
 
 class Payment(db.Model):
     __tablename__ = "payments"
     id = db.Column("id",  db.Integer(), primary_key = True)
     worker_id = db.Column(db.Integer(), db.ForeignKey(Worker.id))
-    paid = db.Column(db.Booloean())
+    value = db.Column(db.Float())
+    date_time = db.Column("date_time", db.DateTime(), nullable=False, default=datetime.now())
+    
 
-    def save_company(owner_id, name):
-        company = Company(owner_id=owner_id, name=name)
+    def save_payment(worker_id):
+        worker = Worker.get_worker(worker_id)
 
-        db.session.add(company)
+        payment = Payment(worker_id=worker_id, value=worker.salary)
+
+        db.session.add(payment)
         db.session.commit()
 
-    def get_all_companies():
-        companies = Company.query\
-            .join(User, User.id == Company.owner_id)\
+    def get_all_payments():
+        payments = Payment.query\
+            .join(Worker, Worker.id == Payment.worker_id)\
+            .join(User, User.id == Worker.user_id)\
+            .join(Company, Company.id == Worker.company_id)\
             .add_columns(
-                User.id,
-                User.username, 
                 Company.name,
-        ).all()
+                Worker.id,
+                User.username,
+                Payment.value,
+                Payment.date_time
+            ).all()
         
-        return companies
+        return payments
     
-    def get_workers(id):
-        company = Company.query.filter_by(id=id).first()
+    def get_company_payments(company_id):
+        workers = Company.get_workers(company_id)
+        payments = []
 
-        return company.workers
+        for worker in workers:
+            payments.append(Payment.get_worker_payments(worker.id))
+
+        return payments
     
-    def get_my_companies(user_id):
+    def get_worker_payments(id):
+        payments = Payment.query.filter_by(worker_id=id)\
+            .join(Worker, Worker.id == Payment.worker_id)\
+            .join(User, User.id == Worker.user_id)\
+            .add_columns(
+                Worker.id,
+                User.username,
+                Payment.value,
+                Payment.date_time
+            ).all()
 
-        user = User.query.get(user_id)
-
-        my_companies = user.companies
-
-        #owned_companies = 
-
-        return my_companies """
+        return payments

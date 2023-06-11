@@ -48,7 +48,7 @@ def auth_signup_post():
     password = request.form.get("password", None)
 
     if User.credentials_exists(username=username, email=email):
-        flash('Email address or username already exists')
+        flash('Email, Nome de Usuário ou CPF já utilizados')
         return redirect(url_for('auth.signup'))
 
     User.save_user(name=name, username=username, email=email, cpf=cpf, 

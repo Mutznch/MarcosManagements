@@ -7,6 +7,7 @@ from controllers.auth_controller import auth
 from controllers.company_controller import company
 from controllers.workers_controller import workers
 from controllers.iot_controller import iot
+from controllers.payment_controller import payment
 
 def create_app() -> Flask:
     app = Flask(__name__, 
@@ -35,6 +36,7 @@ def create_app() -> Flask:
     app.register_blueprint(company, url_prefix= "/")
     app.register_blueprint(workers, url_prefix= "/company/<company_id>/workers")
     app.register_blueprint(iot, url_prefix= "/company/<company_id>/iot")
+    app.register_blueprint(payment, url_prefix= "/company/<company_id>/payment")
 
     @app.route('/')
     def index():

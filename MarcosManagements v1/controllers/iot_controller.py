@@ -2,7 +2,7 @@ from flask import Blueprint, render_template,redirect,url_for, request, flash
 from flask_login import login_required
 from models import Sensor, Device, Actuator, Microcontroller, db
 from controllers import verifyCompany
-iot = Blueprint("iot", __name__, template_folder = './views/admin/', static_folder='./static/', root_path="./")
+iot = Blueprint("iot", __name__, template_folder = './views/', static_folder='./static/', root_path="./")
 
 @iot.route("/")
 @login_required
