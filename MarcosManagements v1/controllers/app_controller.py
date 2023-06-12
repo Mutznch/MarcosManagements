@@ -8,6 +8,8 @@ from controllers.company_controller import company
 from controllers.workers_controller import workers
 from controllers.iot_controller import iot
 from controllers.payment_controller import payment
+from models.mqtt import mqtt_client, topic_subscribe
+
 
 def create_app() -> Flask:
     app = Flask(__name__, 
@@ -18,6 +20,14 @@ def create_app() -> Flask:
     app.config["TESTING"] = False
     app.config["SECRET_KEY"] = "senha ultra secreta"
     app.config["SQLALCHEMY_DATABASE_URI"] = instance
+    app.config['MQTT_BROKER_URL'] = ""
+    app.config['MQTT_BROKER_PORT'] = ""
+    app.config['MQTT_USERNAME'] = ""  # Set this item when you need to verify username and password
+    app.config['MQTT_PASSWORD'] = ""  # Set this item when you need to verify username and password
+    app.config['MQTT_KEEPALIVE'] = 5  # Set KeepAlive time in seconds
+    app.config['MQTT_TLS_ENABLED'] = False  # If your broker supports TLS, set it True
+ 
+    mqtt_client.init_app(app)
     db.init_app(app)
 
     login_manager = LoginManager()
