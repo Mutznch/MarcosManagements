@@ -14,7 +14,7 @@ class Worker(db.Model):
 
     def get_worker(id):
         return Worker.query.filter_by(id=id).join(User, User.id == Worker.user_id)\
-            .add_columns(Worker.id, User.username).first()
+            .add_columns(Worker.id, User.username, Worker.salary).first()
     
     def get_worker_by_user_id(user_id, company_id):
         return Worker.query.filter_by(user_id=user_id, company_id=company_id).first()

@@ -1,0 +1,24 @@
+{% extends "/auth/auth_index.html" %}
+{% import 'company/utils/forms.html' as forms %}
+
+{% block content %}
+{% block main %}
+
+<form action="/company/save_company_changes/{{ company_id }}" class="signin-form" method="POST">
+    <div class="card-body">
+        <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="/company/save_company_changes/{{ company_id }}" method="POST">
+            {{ forms.input(label = 'Nome da Empresa', name = 'name', id = 'name', type='text', box_size = 12, value=company.name) }}<br>
+            {{ forms.button(label = 'Atualizar Empresa', box_size = 12) }}
+        </form>
+        </div>
+</form><br><br>
+<form action="/company/delete/{{ company_id }}" class="signin-form" method="POST">
+    <div class="form-group">
+        <button type="submit" class="form-control btn btn-primary rounded submit px-3" onclick="return confirm('Tem certeza que deseja deletar empresa?');">Deletar Empresa</button>
+    </div>
+    <br><br>
+        <p class="text-right"><a href="/">Voltar para a página inicial</a></p>
+</form>
+
+{% endblock main %}
+{% endblock %}

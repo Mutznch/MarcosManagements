@@ -1,15 +1,15 @@
-{% extends "company/payment/payment_index.html" %}
+{% extends "company/email/email_index.html" %}
 {% import 'company/utils/forms.html' as forms %}
 
 {% block main %}
 <main class="main">
     
     <div class="container-fluid px-4">
-    <h3 class="mt-4">Confirmar Pagamento</h3>
+    <h3 class="mt-4">Escrever Email</h3>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="/company/{{ company_id }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="/company/{{ company_id }}/payment">Payments</a></li>
-        <li class="breadcrumb-item active">Confirmar Pagamento</li>
+        <li class="breadcrumb-item"><a href="/company/{{ company_id }}/email">Email</a></li>
+        <li class="breadcrumb-item active">Escrever Email</li>
     </ol>
     <div class="vertical-center">
         <div class="container view">
@@ -20,13 +20,13 @@
                             <div class="container">
                                 <div class="card">
                                     <div class="card-header">
-                                        Confirmar Pagamento
+                                    Escrever Email
                                     </div>
                                     <div class="card-body">
-                                        <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="save_payment/{{ worker_id }}" method="POST">
-                                            Nome de Usuário: {{ name }}<br>
-                                            Salario: {{ salary }}<br>
-                                            {{ forms.button(label = 'Pagar', box_size = 12) }}
+                                        <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="save_email" method="POST">
+                                            {{ forms.input(label = 'Usuário de Destino', name = 'to_name', id = 'username', type='text', box_size = 6) }}
+                                            {{ forms.textarea(label = 'Conteúdo', name = 'content', rows = 1, id = 'content', box_size = 20) }}
+                                            {{ forms.button(label = 'Enviar', box_size = 12) }}
                                         </form>
                                     </div>
                                 </div>

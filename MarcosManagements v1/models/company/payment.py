@@ -33,11 +33,12 @@ class Payment(db.Model):
         return payments
     
     def get_company_payments(company_id):
-        workers = Company.get_workers(company_id)
+        workers = Worker.get_worker_by_company_id(company_id)
         payments = []
 
         for worker in workers:
-            payments.append(Payment.get_worker_payments(worker.id))
+            for payment in Payment.get_worker_payments(worker.id):
+                payments.append(payment)
 
         return payments
     

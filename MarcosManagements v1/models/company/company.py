@@ -38,3 +38,23 @@ class Company(db.Model):
         my_companies = user.companies
 
         return my_companies 
+    
+    def delete_company(id):
+        try:
+            Company.query.filter_by(id=id).delete()
+            db.session.commit()
+            return True
+        except:
+            return False
+        
+    def update_company(id, name):
+        Company.query.filter_by(id=id)\
+                .update(dict(name=name))
+        
+        Company.query.filter_by(id=id)
+        db.session.commit()
+
+    def get_company_by_id(id):
+        company = Company.query.filter_by(id=id).first()
+        
+        return company

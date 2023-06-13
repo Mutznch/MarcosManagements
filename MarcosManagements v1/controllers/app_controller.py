@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request
 from models.db import db, instance
-from flask_login import LoginManager 
+from flask_login import LoginManager, current_user 
 
 from controllers.admin_controller import admin
 from controllers.auth_controller import auth
@@ -8,6 +8,7 @@ from controllers.company_controller import company
 from controllers.workers_controller import workers
 from controllers.iot_controller import iot
 from controllers.payment_controller import payment
+from controllers.email_controller import email
 
 def create_app() -> Flask:
     app = Flask(__name__, 
@@ -37,9 +38,10 @@ def create_app() -> Flask:
     app.register_blueprint(workers, url_prefix= "/company/<company_id>/workers")
     app.register_blueprint(iot, url_prefix= "/company/<company_id>/iot")
     app.register_blueprint(payment, url_prefix= "/company/<company_id>/payment")
+    app.register_blueprint(email, url_prefix= "/company/<company_id>/email")
 
     @app.route('/')
     def index():
-        return render_template("/home.html")
+        return render_template("/home.html", auth = current_user.username if current_user.is_authenticated else False)
 
     return app

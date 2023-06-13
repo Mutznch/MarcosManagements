@@ -1,13 +1,13 @@
-{% extends "company/payment/payment_index.html" %}
+{% extends "company/email/email_index.html" %}
 {% import 'company/utils/forms.html' as forms %}
 {% block main %}
 <main>
     <div class="container-fluid px-4">
-        <h2 class="mt-4">Listagem de Pagamentos</h2>
+        <h2 class="mt-4">Meus Emails</h2>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="/company/{{ company_id }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/company/{{ company_id }}/payment">Payments</a></li>
-            <li class="breadcrumb-item active">Lista de Pagamentos</li>
+            <li class="breadcrumb-item"><a href="/company/{{ company_id }}/email">Email</a></li>
+            <li class="breadcrumb-item active">Vizualizar Emails</li>
         </ol>
         <div class="vertical-center">
             <div class="container view">
@@ -24,28 +24,33 @@
                                     {% endfor %}
                                 {% endif %}
                             {% endwith %}
-                            <table id="view_payments" class="table table-striped table-bordered" style="width:100%">
+                            <table id="view_emails" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Nome de Usuário</th>
-                                        <th>Valor</th>
-                                        <th>Data</th>
+                                        <th>De Usuário</th>
+                                        <th>Para Usuário</th>
+                                        <th>Horario</th>
+                                        <th>Visualizar</th>
+                                        <th>Deletar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for payment in payments %}
+                                    {% for email in emails %}
                                     <tr>
-                                        <td>{{ payment.username }}</td>
-                                        <td>{{ payment.value }}</td>
-                                        <td>{{ payment.date_time }}</td>
+                                        <td>{{ email.from_name }}</td>
+                                        <td>{{ email.to_name }}</td>
+                                        <td>{{ email.date_time }}</td>
+                                        <td><a href="view_email/{{ email.id }}">Ver conteúdo</a></td>
+                                        <td><i class="fa fa-trash"></i><a href="delete_email/{{ email.id }}" onclick="return confirm('Tem certeza que deseja excluir esse email?');"> Excluir</a></td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nome de Usuário</th>
-                                        <th>Valor</th>
-                                        <th>Data</th>
+                                        <th>De Usuário</th>
+                                        <th>Para Usuário</th>
+                                        <th>Visualizar</th>
+                                        <th>Deletar</th>
                                     </tr>
                                 </tfoot>
                             </table>

@@ -1,0 +1,43 @@
+{% extends "/auth/auth_index.html" %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}. Ir para <a href="{{ url_for('auth.auth_login') }}">login page</a>.
+    </div>
+{% endif %}
+{% endwith %}
+<form action="/auth/update" class="signin-form" method="POST">
+    <input type="hidden"  id="id" name = "id" value="{{ user.id }}">
+    <div class="form-group mb-3">
+        <label class="label" for="name">Nome Completo</label>
+        <input type="text" class="form-control" name="name" id = "name" value="{{ user.name }}" placeholder="Nome Completo">
+    </div>
+    <div class="form-group mb-3">
+        <label class="label" for="email">Email</label>
+        <input type="email" name = "email" id = "email"  class="form-control" value="{{ user.email }}" placeholder="Insira seu email">
+    </div>
+    <div class="form-group mb-3">
+        <label class="label" for="cpf">CPF</label>
+        <input type="text" class="form-control" name="cpf" id = "cpf" value="{{ user.cpf }}" placeholder="CPF">
+    </div>
+    <div class="form-group mb-3">
+        <label class="label" for="password">Redefinir Senha</label>
+        <input type="password" name = "password" id = "password" class="form-control" placeholder="Insira sua senha">
+    </div>
+    <div class="form-group mb-3">
+        <label class="label" for="password">Confirmar Senha</label>
+        <input type="password" name = "password2" id = "password2" class="form-control" placeholder="Confirme sua senha">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Atualizar Dados</button>
+    </div>
+    
+</form>
+<form action="/auth/delete" class="signin-form" method="POST">
+    <div class="form-group">
+        <button type="submit" class="form-control btn btn-primary rounded submit px-3" onclick="return confirm('Tem certeza que deseja deletar sua conta?');">Deletar Usuário</button>
+    </div>
+</form>
+<p class="text-right"><a href="/">Voltar para a página inicial</a></p>
+{% endblock %}
