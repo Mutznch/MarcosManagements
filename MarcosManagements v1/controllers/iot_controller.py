@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template,redirect,url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify
 from flask_login import login_required, current_user
 from models import Sensor, Device, Actuator, Microcontroller, db
 from controllers import verifyCompany
+from models.iot.mqtt import mqtt_client
 iot = Blueprint("iot", __name__, template_folder = './views/', static_folder='./static/', root_path="./")
+
 
 @iot.route("/")
 @login_required
@@ -121,3 +123,16 @@ def register_actuator(company_id):
 def register_microcontroller(company_id):
     verifyCompany(company_id)
     return render_template("company/iot/register_microcontroller.html", company_id=company_id, username=current_user.username)
+
+#@iot.route('/messages')
+#def check_messages():
+#    return render_template("list_reads.html",reads=Read.query.all())
+
+@iot.route('/publish', methods=['GET','POST'])
+def publish_message():
+    request_data = request.get_json()
+    soil_publish_result = mqtt_client.publish(request_data['/marcosm/solo'], request_data['message'])
+    ldr_publish_result = mqtt_client.publish(request_data['/marcosm/luz'], request_data['message'])
+    temp_publish_result = mqtt_client.publish(request_data['/marcosm/temperatura'], request_data['message'])
+
+    return jsonify(soil_publish_result,ldr_publish_result,temp_publish_result)
