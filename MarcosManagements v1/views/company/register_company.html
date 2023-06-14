@@ -8,13 +8,12 @@
     <div class="card-body">
         <form class="row g-3 justify-content-center" enctype="multipart/form-data" action="../save_company" method="POST">
             <input type="hidden"  id="id" name = "id" value="{{ user_id }}">
-            {{ forms.input(label = 'Nome da Empresa', name = 'name', id = 'name', type='text', box_size = 12) }}
+            {{ forms.input(label = 'Nome da Empresa', name = 'name', id = 'name', type='text', box_size = 12) }}<br>
             {{ forms.button(label = 'Cadastrar Empresa', box_size = 12) }}
-        </form>
+        </form><br><br>
+        <p class="text-right"><a href="/">Voltar para a página inicial</a></p>
     </div>
 </form>
 
 {% endblock main %}
 {% endblock %}
-
-<!-- ARRUMAR ISSO AQUI!!! -->

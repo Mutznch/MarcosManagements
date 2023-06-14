@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify
-from flask_login import login_required
+from flask_login import login_required, current_user
 from models import Sensor, Device, Actuator, Microcontroller, db
 from controllers import verifyCompany
 from models.iot.mqtt import mqtt_client
@@ -10,20 +10,20 @@ iot = Blueprint("iot", __name__, template_folder = './views/', static_folder='./
 @login_required
 def iot_index(company_id):
     verifyCompany(company_id)
-    return render_template("company/iot/iot_index.html", company_id=company_id)
+    return render_template("company/iot/iot_index.html", company_id=company_id, username=current_user.username)
 
 @iot.route("/register_sensor")
 @login_required
 def register_sensor(company_id):
     verifyCompany(company_id)
-    return render_template("company/iot/register_sensor.html")
+    return render_template("company/iot/register_sensor.html", username=current_user.username)
 
 @iot.route("/view_sensors")
 @login_required
 def view_sensors(company_id):
     verifyCompany(company_id)
     sensors = Sensor.get_company_sensors(company_id)
-    return render_template("company/iot/view_sensors.html", sensors = sensors, company_id=company_id)
+    return render_template("company/iot/view_sensors.html", sensors = sensors, company_id=company_id, username=current_user.username)
 
 @iot.route("/save_sensors", methods = ["POST"])
 def save_sensors(company_id):
@@ -48,7 +48,7 @@ def update_sensor(company_id, id):
                         .join(Sensor, Sensor.id == Device.id)\
                         .filter(Sensor.id == int(id)).first()
     
-    return render_template("company/iot/update_sensor.html", sensor = sensor, company_id=company_id)
+    return render_template("company/iot/update_sensor.html", sensor = sensor, company_id=company_id, username=current_user.username)
 
 @iot.route("/save_sensor_changes", methods = ["POST"])
 def save_sensor_changes(company_id):
@@ -88,7 +88,7 @@ def save_actuator(company_id):
 def view_actuators(company_id):
     verifyCompany(company_id)
     actuators = Actuator.get_company_actuators(company_id)
-    return render_template("company/iot/view_actuators.html", actuators = actuators, company_id=company_id)
+    return render_template("company/iot/view_actuators.html", actuators = actuators, company_id=company_id, username=current_user.username)
 
 @iot.route("/save_microcontroller", methods = ["POST"])
 def save_microcontroller(company_id):
@@ -110,20 +110,19 @@ def save_microcontroller(company_id):
 def view_microcontrollers(company_id):
     verifyCompany(company_id)
     microcontrollers = Microcontroller.get_company_microcontrollers(company_id)
-    return render_template("company/iot/view_microcontrollers.html", microcontrollers = microcontrollers, company_id=company_id)
+    return render_template("company/iot/view_microcontrollers.html", microcontrollers = microcontrollers, company_id=company_id, username=current_user.username)
 
 @iot.route("/register_actuator")
 @login_required
 def register_actuator(company_id):
     verifyCompany(company_id)
-    return render_template("company/iot/register_actuator.html", company_id=company_id)
+    return render_template("company/iot/register_actuator.html", company_id=company_id, username=current_user.username)
 
 @iot.route("/register_microcontroller")
 @login_required
 def register_microcontroller(company_id):
     verifyCompany(company_id)
-    return render_template("company/iot/register_microcontroller.html", company_id=company_id)
-
+    return render_template("company/iot/register_microcontroller.html", company_id=company_id, username=current_user.username)
 
 #@iot.route('/messages')
 #def check_messages():

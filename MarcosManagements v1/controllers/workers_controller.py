@@ -10,20 +10,20 @@ workers = Blueprint("workers", __name__, template_folder="./views/", static_fold
 @login_required
 def workers_index(company_id):
     verifyCompany(company_id)
-    return render_template("company/workers/workers_index.html", company_id=company_id)
+    return render_template("company/workers/workers_index.html", company_id=company_id, username=current_user.username)
 
 @workers.route("/register_worker")
 @login_required
 def register_workers(company_id):
     verifyCompany(company_id)
-    return render_template("company/workers/register_worker.html", company_id=company_id)
+    return render_template("company/workers/register_worker.html", company_id=company_id, username=current_user.username)
 
 @workers.route("/view_workers")
 @login_required
 def view_workers(company_id):
     verifyCompany(company_id)
     workers = Worker.get_worker_by_company_id(company_id)
-    return render_template("company/workers/view_workers.html", workers = workers, company_id=company_id)
+    return render_template("company/workers/view_workers.html", workers = workers, company_id=company_id, username=current_user.username)
 
 @workers.route("/save_worker", methods=["POST"])
 def save_worker(company_id):
@@ -52,7 +52,7 @@ def save_worker(company_id):
 def update_worker(worker_id, company_id):
     verifyOwner(company_id)
     worker = Worker.get_worker(worker_id)
-    return render_template("company/workers/update_Worker.html", worker=worker, company_id=company_id)
+    return render_template("company/workers/update_Worker.html", worker=worker, company_id=company_id, username=current_user.username)
 
 @workers.route("/save_worker_changes", methods = ["POST"])
 def save_worker_changes(company_id):

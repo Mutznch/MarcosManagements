@@ -1,0 +1,42 @@
+{% extends "company/email/email_index.html" %}
+{% import 'company/utils/forms.html' as forms %}
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h2 class="mt-4">Email</h2>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/company/{{ company_id }}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/company/{{ company_id }}/email">Email</a></li>
+            <li class="breadcrumb-item active">Vizualizar Email</li>
+        </ol>
+        <div class="vertical-center">
+            <div class="container view">
+                <div class="justify-content-center">
+                    <div class="card">
+                        <div class="card-body">
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+                                    {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} alert-dismissible">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        {{ message }}
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                            <p><b>De:</b> {{ email.from_name }}</p>
+                            <p><b>Para:</b> {{ email.to_name }}</p>
+                        </div>
+                        <div class="card-body">
+                            <p><b>Conteúdo:</b><br><br>
+                                {{ email.content }}
+                            </p><br>
+                            <p><i class="fa fa-trash"></i><a href="/company/{{ company_id }}/email/delete_email/{{ email.id }}" onclick="return confirm('Tem certeza que deseja excluir esse email?');"> Excluir</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -28,7 +28,7 @@
                                                 {{ forms.input(label = 'Modelo', name = 'model', id = 'model', value=sensor[0].model, type='text', box_size = 3) }}
                                                 {{ forms.input(label = 'Marca', name = 'brand', id = 'brand', value=sensor[0].brand, type='text', box_size = 3) }}
                                                 {{ forms.input(label = 'Tensão', name = 'voltage', id = 'voltage', value=sensor[0].voltage, type='text', box_size = 2) }}
-                                                {{ forms.input(label = 'Unidade de Medida', name = 'measure', id = 'measure', value=sensor[1].measure, type='text', box_size = 2) }}
+                                                {{ forms.input(label = 'Unidade de Medida', name = 'measure', id = 'measure', value=sensor[0].measure, type='text', box_size = 2) }}
                                                 {{ forms.textarea(label = 'Informações Adicionais', name = 'description', rows = 1, id = 'description', value=sensor[0].description, box_size = 8) }}
                                                 {% if sensor[0].is_active == true %}
                                                     {{ forms.checkbox(label = 'Sensor ativo', name = "is_active", id = "is_active", checked='checked', box_size = 12) }}

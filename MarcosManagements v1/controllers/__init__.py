@@ -14,4 +14,4 @@ def verifyOwner(id):
     companies = Company.get_my_companies(user_id)
     companies_id = [str(company.id) for company in companies]
     if id not in companies_id:
-        return redirect(url_for('company.company_overview', company_id=id))
+        return redirect(url_for('company.company_index'))

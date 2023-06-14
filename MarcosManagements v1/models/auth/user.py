@@ -53,3 +53,17 @@ class User(UserMixin, db.Model):
         user = User.get_user_by_id(id)
         
         return user.companies
+    
+    def update_user(data):
+        User.query.filter_by(id=data['id'])\
+                .update(dict(name = data['name'], email=data['email'], cpf = data['cpf'], password=data['password']))
+        
+        db.session.commit()
+
+    def delete_user(id):
+        try:
+            User.query.filter_by(id=id).delete()
+            db.session.commit()
+            return True
+        except:
+            return False
