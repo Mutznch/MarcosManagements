@@ -126,13 +126,15 @@ def register_microcontroller(company_id):
 
 #@iot.route('/messages')
 #def check_messages():
-#    return render_template("list_reads.html",reads=Read.query.all())
+#  return render_template("list_reads.html",reads=Read.query.all())
 
-@iot.route('/publish', methods=['GET','POST'])
-def publish_message():
-    request_data = request.get_json()
-    soil_publish_result = mqtt_client.publish(request_data['/marcosm/solo'], request_data['message'])
-    ldr_publish_result = mqtt_client.publish(request_data['/marcosm/luz'], request_data['message'])
-    temp_publish_result = mqtt_client.publish(request_data['/marcosm/temperatura'], request_data['message'])
+@iot.route('/read_sensor/<sensor_id>')
+def publish_message(sensor_id,company_id):
 
-    return jsonify(soil_publish_result,ldr_publish_result,temp_publish_result)
+    mqtt_client.publish()
+
+    return redirect(url_for('iot.view_sensors', company_id=company_id))
+    #ldr_publish_result = mqtt_client.publish(['/marcosm/luz'], request_data['message'])
+    #temp_publish_result = mqtt_client.publish(request_data['/marcosm/temperatura'], request_data['message'])
+    
+#,ldr_publish_result,temp_publish_result

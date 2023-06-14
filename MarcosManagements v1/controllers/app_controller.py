@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, request
 from models.db import db, instance
 from flask_login import LoginManager, current_user 
+from models import Read 
+from datetime import datetime
 
 from controllers.admin_controller import admin
 from controllers.auth_controller import auth
@@ -21,14 +23,14 @@ def create_app() -> Flask:
     app.config["TESTING"] = False
     app.config["SECRET_KEY"] = "senha ultra secreta"
     app.config["SQLALCHEMY_DATABASE_URI"] = instance
-
     app.config['MQTT_BROKER_URL'] = "broker.hivemq.com"
-    app.config['MQTT_BROKER_PORT'] = "1883"
+    app.config['MQTT_BROKER_PORT'] = 1883
     app.config['MQTT_USERNAME'] = ""  # Set this item when you need to verify username and password
     app.config['MQTT_PASSWORD'] = ""  # Set this item when you need to verify username and password
     app.config['MQTT_KEEPALIVE'] = 5  # Set KeepAlive time in seconds
     app.config['MQTT_TLS_ENABLED'] = False  # If your broker supports TLS, set it True
- 
+
+
     mqtt_client.init_app(app)
     db.init_app(app)
 
@@ -66,17 +68,17 @@ def create_app() -> Flask:
 
     @mqtt_client.on_message()
     def handle_mqtt_message(client, userdata, message):
+        print("bolas")
         data = dict(
             topic=message.topic,
             payload=message.payload.decode()
         )
-        if(message.topic in ["/marcosm/solo","/marcosm/luz","/marcosm/temperatura","/marcosm/receber"]):
+        if(message.topic in ["/marcosm/umidade"]):
             with app.app_context():
-                print("a\n")
-                #reads = Read(date_time=datetime.now(), message=message.payload.decode())
-                #db.session.add(reads)
-                #db.session.commit()
 
-        print('Received message on topic: {topic} with payload: {payload}'.format(**data))
+                print("deu certo")
+                reads = Read(user_id=1,sensor_id=1,value=message.payload.decode())
+                db.session.add(reads)
+                db.session.commit()
 
     return app

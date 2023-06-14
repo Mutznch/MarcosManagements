@@ -46,3 +46,10 @@ class Sensor(db.Model):
         Sensor.query.filter_by(id=data['id'])\
                         .update(dict(measure = data['measure']))
         db.session.commit()
+
+    def get_company_sensors(company_id):
+        sensors = Device.query.filter_by(company_id=company_id)\
+        .join(Sensor,Sensor.id == Device.id)\
+        .add_columns(Sensor.id, Device.name, Device.brand, Device.model,
+                                Device.voltage, Device.description,  Device.is_active, Sensor.measure).all()
+        return sensors

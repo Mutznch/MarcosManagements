@@ -1,7 +1,5 @@
 from models.db import db, instance
-from models.auth.role import Role
 from models.auth.user import User
-from models.auth.user_roles import UserRole
 from models.company.company import Company
 from models.company.worker import Worker
 from models.company.payment import Payment

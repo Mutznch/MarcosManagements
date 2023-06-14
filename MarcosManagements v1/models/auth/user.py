@@ -11,7 +11,6 @@ class User(UserMixin, db.Model):
     cpf = db.Column(db.String(11), nullable=False, unique=True)
     password = db.Column(db.String(1024), nullable=False) 
 
-    roles = db.relationship("Role", back_populates="users", secondary="user_roles")
     reads = db.relationship("Read", backref="users", lazy=True)    
     activations = db.relationship("Activation", backref="users", lazy=True)
     companies = db.relationship("Company", backref="users", lazy=True)

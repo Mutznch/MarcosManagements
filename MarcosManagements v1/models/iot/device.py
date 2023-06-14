@@ -3,7 +3,7 @@ from models import db, Company
 class Device(db.Model):
     __tablename__ = "devices"
     id = db.Column("id", db.Integer(), primary_key=True)
-    company_id = db.Column(db.Integer(), db.ForeignKey(Company.id), primary_key = True)
+    company_id = db.Column(db.Integer(), db.ForeignKey(Company.id))
     name = db.Column(db.String(50), nullable=False)
     brand = db.Column(db.String(30))
     model = db.Column(db.String(30))
